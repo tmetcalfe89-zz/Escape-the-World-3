@@ -1,6 +1,7 @@
 #priority 3
 // Holds all smithy-specific data.
 import crafttweaker.item.IItemStack;
+import crafttweaker.item.IIngredient;
 import scripts.crafttweaker.CommonDatabase;
 
 static metalTypes as string[][] = [
@@ -42,7 +43,7 @@ function getMetalIngot(metalType as string) as IItemStack {
 }
 
 function getArmor(type as string, slot as string) as IItemStack {
-  if (!CommonDatabase.isValidArmorType(type)) {
+  if (!CommonDatabase.isValidArmorMaterial(type)) {
     print(type + " is an invalid armor type.");
     return null;
   }
@@ -71,4 +72,32 @@ function getArmorRecipeShape(slot as string) as int[][] {
     return null;
   }
   return armorPartRecipeShapes[slot];
+}
+
+static toolMaterials as string[][] = [
+  ["iron"]
+] as string[][];
+
+static toolRecipeShapes as int[][][string] = {
+  "sword": [[1],[1]],
+  "axe": [[1,1],[0,1]],
+  "shovel": [[1]],
+  "pickaxe": [[0,1,0],[1,0,1]],
+  "hoe": [[1,1]]
+} as int[][][string];
+
+function getToolHeadRecipeShape(tool as string) as int[][] {
+  if (!CommonDatabase.isValidToolType(tool)) {
+    print(tool + " is an invalid tool type.");
+    return null;
+  }
+  return toolRecipeShapes[tool];
+}
+
+function getTool(material as string, tool as string) as IItemStack {
+  return itemUtils.getItem("minecraft:" + material + "_" + tool);
+}
+
+function getToolHead(material as string, tool as string) as IItemStack {
+  return itemUtils.getItem("contenttweaker:" + material + "_" + tool + "_head");
 }

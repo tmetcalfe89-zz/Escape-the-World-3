@@ -178,23 +178,53 @@ static armorSlots as string[][] = [
   ["horse_armor"]
 ] as string[][];
 
-static armorTypes as string[][] = [
-  ["leather"],
-  ["iron"]
-] as string[][];
-
-function isValidArmorType(armor as string) as bool {
-  for i, armorType in armorTypes {
-    if (armorType[0] == armor) {
+function isValidArmorSlot(slot as string) as bool {
+  for i, armorSlot in armorSlots {
+    if (armorSlot[0] == slot) {
       return true;
     }
   }
   return false;
 }
 
-function isValidArmorSlot(slot as string) as bool {
-  for i, armorSlot in armorSlots {
-    if (armorSlot[0] == slot) {
+static toolMaterials as string[][] = [
+  ["iron"]
+] as string[][];
+
+function isValidToolMaterial(tool as string) as bool {
+  for i, toolMaterial in toolMaterials {
+    if (toolMaterial[0] == tool) {
+      return true;
+    }
+  }
+  return false;
+}
+
+static armorMaterials as string[][] = [
+  ["leather"],
+  ["iron"]
+] as string[][];
+
+function isValidArmorMaterial(armor as string) as bool {
+  for i, armorMaterial in armorMaterials {
+    if (armorMaterial[0] == armor) {
+      return true;
+    }
+  }
+  return false;
+}
+
+static toolTypes as string[][] = [
+  ["sword"],
+  ["axe"],
+  ["shovel"],
+  ["pickaxe"],
+  ["hoe"]
+] as string[][];
+
+function isValidToolType(tool as string) as bool {
+  for i, toolType in toolTypes {
+    if (toolType[0] == tool) {
       return true;
     }
   }

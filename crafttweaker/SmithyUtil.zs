@@ -63,7 +63,7 @@ function addIngotRecipe(metal as string) {
  * @param {string} slot     The slot the armor goes in.
  * @param {string} material The material the armor is made of.
  */
-function addArmorPieceRecipe(slot as string, type as string) {
+function addArmorRecipe(slot as string, type as string) {
   addShapedRecipe(
     CommonUtil.createShapedRecipe(
       SmithyDatabase.getArmorRecipeShape(slot),
@@ -75,6 +75,34 @@ function addArmorPieceRecipe(slot as string, type as string) {
     ),
     SmithyDatabase.getArmor(type, slot),
     <ore:artisansHammer>,
+    "DIFFICULT"
+  );
+}
+
+function addToolRecipe(material as string, tool as string) {
+  addShapedRecipe(
+    CommonUtil.createShapedRecipe(
+      SmithyDatabase.getToolHeadRecipeShape(tool),
+      [
+        null,
+        SmithyDatabase.getMetalIngot(material)
+      ]
+    ),
+    SmithyDatabase.getToolHead(material, tool),
+    <ore:artisansHammer>,
     "MODERATE"
+  );
+  addShapedRecipe(
+    [
+      [
+        SmithyDatabase.getToolHead(material, tool)
+      ],
+      [
+        <contenttweaker:handle>
+      ]
+    ],
+    SmithyDatabase.getTool(material, tool),
+    <ore:artisansHammer>,
+    "EASY"
   );
 }

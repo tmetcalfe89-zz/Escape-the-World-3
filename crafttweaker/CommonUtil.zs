@@ -52,7 +52,6 @@ function getMortarDifficultyModifier(difficulty as string) as int {
  * @return {int}               The value required.
  */
 function getWorkbenchDifficultyModifier(difficulty as string) as int {
-  print(5 * (CommonDatabase.getDifficultyValue(difficulty) - 1));
   return max(1, 5 * (CommonDatabase.getDifficultyValue(difficulty) - 1));
 }
 
